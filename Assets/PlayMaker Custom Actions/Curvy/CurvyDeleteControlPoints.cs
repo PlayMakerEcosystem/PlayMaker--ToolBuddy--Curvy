@@ -37,7 +37,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                     if (!StartIndex.IsNone && !Count.IsNone && Count.Value > 0)
                     {
                         for (int i = 0; i < Count.Value; i++)
-                            spl.Delete(spl.ControlPoints[StartIndex.Value]);
+                            spl.Delete(spl.ControlPointsList[StartIndex.Value]);
 
                         spl.Refresh();
                     }

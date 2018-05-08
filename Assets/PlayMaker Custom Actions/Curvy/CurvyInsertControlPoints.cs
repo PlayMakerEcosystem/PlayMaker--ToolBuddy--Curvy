@@ -40,7 +40,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 {
                     if (!Index.IsNone)
                     {
-                        CurvySplineSegment seg=(Index.Value>=0 && Index.Value<spl.ControlPointCount) ? spl.ControlPoints[Index.Value] : null;
+                        CurvySplineSegment seg=(Index.Value>=0 && Index.Value<spl.ControlPointCount) ? spl.ControlPointsList[Index.Value] : null;
                         for (int i = 0; i < Points.Length; i++)
                         {
                             if (!Points[i].IsNone)

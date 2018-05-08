@@ -46,7 +46,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                         }
                     }
                     else if (spl.ControlPointCount > 0)
-                        StoreObject.Value = spl.ControlPoints[Mathf.Clamp(Index.Value, 0, spl.ControlPointCount - 1)].gameObject;
+                        StoreObject.Value = spl.ControlPointsList[Mathf.Clamp(Index.Value, 0, spl.ControlPointCount - 1)].gameObject;
                 }
             }
 

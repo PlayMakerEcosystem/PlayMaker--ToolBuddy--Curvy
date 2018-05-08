@@ -159,9 +159,9 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 StoreLength.Value = mSegment.Length;
 
             if (StoreSegmentIndex.UseVariable)
-                StoreSegmentIndex.Value = mSegment.SegmentIndex;
+                StoreSegmentIndex.Value = mSegment.Spline.GetSegementIndex(mSegment);
             if (StoreControlPointIndex.UseVariable)
-                StoreControlPointIndex.Value = mSegment.ControlPointIndex;
+                StoreControlPointIndex.Value = mSegment.Spline.GetControlPointIndex(mSegment);
         }
 
         public override void Reset()
