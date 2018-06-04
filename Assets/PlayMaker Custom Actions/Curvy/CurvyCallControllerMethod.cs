@@ -19,7 +19,6 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
     {
         public enum Methods
         {
-            Prepare,
             Stop,
             Play,
         }
@@ -40,7 +39,6 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 {
                     switch (Command)
                     {
-                        case Methods.Prepare: mController.Prepare(); break;
                         case Methods.Stop: mController.Stop(); break;
                         case Methods.Play: mController.Play(); break;
                     }

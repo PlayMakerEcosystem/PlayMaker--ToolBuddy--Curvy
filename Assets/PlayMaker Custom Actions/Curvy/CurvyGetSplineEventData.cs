@@ -4,6 +4,8 @@
 // 
 // http://www.fluffyunderware.com
 // =====================================================================
+
+using FluffyUnderware.Curvy.Controllers;
 using UnityEngine;
 using HutongGames.PlayMaker;
 using TooltipAttribute = HutongGames.PlayMaker.TooltipAttribute;
@@ -29,23 +31,19 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                     getData(PlayMakerCurvyComponentProxy._OnCPReachedEventData);
                     break;
             }
-            
+
             Finish();
         }
 
-        protected virtual void getData(System.ComponentModel.CancelEventArgs e)
+        protected virtual void getData(CurvySplineMoveEventArgs e)
         {
             if (e == null)
                 return;
 
-            var se = e as CurvySplineEventArgs;
-            if (se!=null)
-            {
-                if (!StoreSpline.IsNone)
-                    StoreSpline.Value = se.Spline;
-                if (!StoreGameObject.IsNone)
-                    StoreGameObject.Value = se.Spline.gameObject;
-            }
+            if (!StoreSpline.IsNone)
+                StoreSpline.Value = e.Spline;
+            if (!StoreGameObject.IsNone)
+                StoreGameObject.Value = e.Spline.gameObject;
         }
 
 

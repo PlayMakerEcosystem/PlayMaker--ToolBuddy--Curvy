@@ -176,7 +176,9 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
             if (StoreCount.UseVariable)
             {
+#pragma warning disable 618
                 StoreCount.Value = (mSpline is CurvySplineGroup) ? ((CurvySplineGroup)mSpline).Count : ((CurvySpline)mSpline).Count;
+#pragma warning restore 618
             }
         }
 
@@ -208,6 +210,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
         CurvySplineSegment getSegment(float tf, out float localF)
         {
+#pragma warning disable 618
             if (mSpline is CurvySplineGroup)
             {
                 float ltf;
@@ -216,6 +219,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
             }
             else
                 return ((CurvySpline)mSpline).TFToSegment(tf, out localF);
+#pragma warning restore 618
         }
     }
 }

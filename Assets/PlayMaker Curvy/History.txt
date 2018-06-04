@@ -9,6 +9,10 @@ pmCurvy - Curvy PlayMaker
 
 ========== HISTORY ==========================
 
+2.3.0
+=======
+Made compatible with Curvy 2.3.0
+
 2.2.4.1
 =======
 Fixed obsolete warnings for deprecated API in various curvy actions
