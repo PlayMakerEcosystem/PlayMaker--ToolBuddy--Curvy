@@ -4,10 +4,14 @@
 // 
 // http://www.fluffyunderware.com
 // =====================================================================
+
+using System;
+using System.Linq;
 using UnityEngine;
 using HutongGames.PlayMaker;
 using TooltipAttribute = HutongGames.PlayMaker.TooltipAttribute;
 using FluffyUnderware.Curvy;
+using FluffyUnderware.DevTools.Extensions;
 
 namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
@@ -69,15 +73,15 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
         CurvySplineBase mSpline;
 
-		public override void OnPreprocess()
-		{
-			#if PLAYMAKER_1_8_5_OR_NEWER
-			if (lateUpdate)
-			{
-				Fsm.HandleLateUpdate = true;
-			}
-			#endif
-		}
+        public override void OnPreprocess()
+        {
+            #if PLAYMAKER_1_8_5_OR_NEWER
+            if (lateUpdate)
+            {
+                Fsm.HandleLateUpdate = true;
+            }
+            #endif
+        }
 
         // Code that runs on entering the state.
         public override void OnEnter()
@@ -113,7 +117,15 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
         void DoInterpolate()
         {
             if (!mSpline.IsInitialized) return;
-            System.Type metaType = System.Type.GetType(MetaDataType.Value);
+
+#if NETFX_CORE
+            Type[] knownTypes = this.GetType().GetAllTypes();
+#else
+            Type[] knownTypes = TypeExt.GetLoadedTypes();
+
+#endif
+            System.Type metaType = knownTypes.FirstOrDefault(t => t.FullName == MetaDataType.Value);
+
             bool calc = !Input.IsNone;
             if (calc)
             {

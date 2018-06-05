@@ -533,12 +533,12 @@ MonoBehaviour:
   UpdateIn: 0
   m_Space: 0
   m_PositionMode: 0
-  m_InitialPosition: 0
-  m_MoveMode: 2
+  m_Position: 0
+  m_MoveMode: 1
   m_Speed: 30
+  m_Direction: 0
   m_Clamping: 1
   m_PlayAutomatically: 1
-  m_AdaptOnChange: 1
   m_Animate: 0
   m_Animation:
     serializedVersion: 2
@@ -563,34 +563,46 @@ MonoBehaviour:
   m_ResetOnStop: 0
   m_OrientationMode: 1
   m_OrientationAxis: 0
+  m_IgnoreDirection: 0
   m_DampingDirection: 0
   m_DampingUp: 0
-  m_IgnoreDirection: 0
   m_OffsetAngle: 0
   m_OffsetRadius: 0
   m_OffsetCompensation: 1
-  m_OnAnimationEnd:
+  Deprecated_On_Animation_End:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: FluffyUnderware.Curvy.CurvyControllerEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: FluffyUnderware.Curvy.Controllers.CurvyControllerEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onInitialized:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: FluffyUnderware.Curvy.Controllers.ControllerEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Spline: {fileID: 1655500529}
   m_UseCache: 0
+  m_AdaptOnChange: 1
+  connectionBehavior: 0
+  allowDirectionChange: 1
+  rejectCurrentSpline: 1
+  rejectTooDivergentSplines: 0
+  maxAllowedDivergenceAngle: 90
+  connectionCustomSelector: {fileID: 0}
   m_OnControlPointReached:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: FluffyUnderware.Curvy.CurvySplineMoveEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: FluffyUnderware.Curvy.Controllers.CurvySplineMoveEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_OnEndReached:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: FluffyUnderware.Curvy.CurvySplineMoveEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: FluffyUnderware.Curvy.Controllers.CurvySplineMoveEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_OnSwitch:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: FluffyUnderware.Curvy.CurvySplineMoveEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: FluffyUnderware.Curvy.Controllers.CurvySplineMoveEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &887777750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,7 +872,7 @@ MonoBehaviour:
         fsmRectParams: []
         fsmQuaternionParams: []
         stringParams: []
-        byteData: 01000000000000000000000000000000000000000000010000000000000000000000000100000000000000000000000001000000000000000000000000000000000100000000010000000000000000000000000100000000010000000001000000000100000000010000000001000000000101000000000001736c6964657256616c75650100000000016865696768740000000001736c6964657256616c756501000000000000000000000000010000000001000000000168656967687400000000010100000000010000
+        byteData: 010000000001544600000000000000000000000000000000010000000000000000000000000100000000000000000000000001000000000000000000000000000000000100000000010000000000000000000000000100000000010000000001000000000100000000010000000001000000000101000000000001736c6964657256616c75650100000000016865696768740000000001736c6964657256616c756501000000000000000000000000010000000001000000000168656967687400000000010100000000010000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
@@ -907,8 +919,8 @@ MonoBehaviour:
         - everyFrame
         - lateUpdate
         - fixedUpdate
-        paramDataPos: 0000000000000000000000000100000006000000080000000a00000017000000240000003100000042000000470000005400000059000000000000005e00000063000000000000000000000000000000680000006d00000072000000730000000100000074000000840000008500000090000000a000000002000000a1000000ae000000b3000000be000000c3000000c7000000c8000000c9000000ca000000
-        paramByteDataSize: 0000000001000000000000000500000002000000020000000d0000000d0000000d00000011000000050000000d0000000500000005000000000000000500000005000000000000000000000000000000050000000500000001000000010000000000000010000000010000000b0000001000000001000000000000000d000000050000000b000000050000000400000001000000010000000100000001000000
+        paramDataPos: 00000000000000000000000001000000080000000a0000000c0000001900000026000000330000004400000049000000560000005b0000000000000060000000650000000000000000000000000000006a0000006f00000074000000750000000100000076000000860000008700000092000000a200000002000000a3000000b0000000b5000000c0000000c5000000c9000000ca000000cb000000cc000000
+        paramByteDataSize: 0000000001000000000000000700000002000000020000000d0000000d0000000d00000011000000050000000d0000000500000005000000000000000500000005000000000000000000000000000000050000000500000001000000010000000000000010000000010000000b0000001000000001000000000000000d000000050000000b000000050000000400000001000000010000000100000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -960,7 +972,7 @@ MonoBehaviour:
     locked: 0
     manualUpdate: 0
     keepDelayedEventsOnStateExit: 0
-    preprocessed: 0
+    preprocessed: 1
     ExposedEvents: []
     RestartOnEnable: 1
     EnableDebugFlow: 0
@@ -1826,14 +1838,19 @@ MonoBehaviour:
   m_OnMoveControlPointReached:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: FluffyUnderware.Curvy.CurvySplineMoveEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: FluffyUnderware.Curvy.Controllers.CurvySplineMoveEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   m_OnMoveEndReached:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: FluffyUnderware.Curvy.CurvySplineMoveEvent, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: FluffyUnderware.Curvy.Controllers.CurvySplineMoveEvent, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   ShowGizmos: 1
+  ControlPoints:
+  - {fileID: 724124978}
+  - {fileID: 1396188130}
+  - {fileID: 899151546}
+  - {fileID: 99706569}
   m_Interpolation: 3
   m_RestrictTo2D: 0
   m_Closed: 1
@@ -1851,11 +1868,6 @@ MonoBehaviour:
   m_UseThreading: 1
   m_CheckTransform: 0
   m_UpdateIn: 0
-  ControlPoints:
-  - {fileID: 724124978}
-  - {fileID: 1396188130}
-  - {fileID: 899151546}
-  - {fileID: 99706569}
 --- !u!4 &1655500530
 Transform:
   m_ObjectHideFlags: 0
