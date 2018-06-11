@@ -8,6 +8,7 @@ using UnityEngine;
 using HutongGames.PlayMaker;
 using TooltipAttribute = HutongGames.PlayMaker.TooltipAttribute;
 using FluffyUnderware.Curvy;
+using FluffyUnderware.Curvy.Controllers;
 using FluffyUnderware.Curvy.Utils;
 
 
@@ -66,11 +67,6 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
         void DoAction()
         {
-			if (!mCurvyController.IsInitialized)
-			{
-				return;
-			}
-
 			if (!MoveMode.IsNone)
 			{
 				mCurvyController.MoveMode = (CurvyController.MoveModeEnum)MoveMode.Value;

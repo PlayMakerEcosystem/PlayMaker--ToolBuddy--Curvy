@@ -51,9 +51,9 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                                 else
                                     newCP = spl.InsertBefore(seg);
                                 if (Space == Space.Self)
-                                    newCP.localPosition = Points[i].Value;
+                                    newCP.SetLocalPosition(Points[i].Value);
                                 else
-                                    newCP.position = Points[i].Value;
+                                    newCP.SetPosition(Points[i].Value);
                             }
                         }
                         spl.Refresh();
