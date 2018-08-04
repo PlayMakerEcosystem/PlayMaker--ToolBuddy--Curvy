@@ -1,8 +1,8 @@
 // =====================================================================
-// Copyright 2013-2016 Fluffy Underware
+// Copyright 2013-2018 ToolBuddy
 // All rights reserved
 // 
-// http://www.fluffyunderware.com
+// http://www.toolbuddy.net
 // =====================================================================
 using UnityEngine;
 using HutongGames.PlayMaker;
@@ -21,7 +21,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
         public FsmOwnerDefault GameObject;
 
         [RequiredField, Tooltip("The Spline or SplineGroup to address")]
-        [CheckForComponent(typeof(CurvySplineBase))]
+        [CheckForComponent(typeof(CurvySpline))]
         public FsmGameObject Spline;
 
         [RequiredField, Tooltip("Position on spline (TF or distance)")]
@@ -40,7 +40,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
         public PlayMakerActionsUtils.EveryFrameUpdateSelector updateType;
 
-        CurvySplineBase mSpline;
+        CurvySpline mSpline;
 
 
 		public override void OnPreprocess()
@@ -61,7 +61,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
         public override void OnEnter()
         {
             if (!Spline.IsNone)
-                mSpline = Spline.Value.GetComponent<CurvySplineBase>();
+                mSpline = Spline.Value.GetComponent<CurvySpline>();
 
             if (mSpline && !everyFrame)
             {

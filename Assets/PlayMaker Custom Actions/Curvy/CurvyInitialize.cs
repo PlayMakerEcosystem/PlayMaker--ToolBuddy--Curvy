@@ -1,8 +1,8 @@
 // =====================================================================
-// Copyright 2013-2016 Fluffy Underware
+// Copyright 2013-2018 ToolBuddy
 // All rights reserved
 // 
-// http://www.fluffyunderware.com
+// http://www.toolbuddy.net
 // =====================================================================
 using UnityEngine;
 using System.Collections;
@@ -19,19 +19,19 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
     {
 
         [RequiredField, Tooltip("The Spline to address")]
-        [CheckForComponent(typeof(CurvySplineBase))]
+        [CheckForComponent(typeof(CurvySpline))]
         public FsmOwnerDefault GameObject;
 
         [Tooltip("Event to fire when the Curvy spline is fully loaded")]
         public FsmEvent successEvent;
 
-        CurvySplineBase _spl;
+        CurvySpline _spl;
 
         public override void OnEnter()
         {
             GameObject go = Fsm.GetOwnerDefaultTarget(GameObject);
             if (go)
-                _spl = go.GetComponent<CurvySplineBase>();
+                _spl = go.GetComponent<CurvySpline>();
         }
 
         public override void OnUpdate()

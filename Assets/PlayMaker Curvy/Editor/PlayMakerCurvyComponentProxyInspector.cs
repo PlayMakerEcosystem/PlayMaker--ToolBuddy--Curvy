@@ -1,8 +1,8 @@
 ﻿// =====================================================================
-// Copyright 2013-2015 Fluffy Underware
+// Copyright 2013-2018 ToolBuddy
 // All rights reserved
 // 
-// http://www.fluffyunderware.com
+// http://www.toolbuddy.net
 // =====================================================================
 using UnityEditor;
 using UnityEngine;
@@ -55,7 +55,7 @@ namespace FluffyUnderware.CurvyEditor.PlayMaker
             if (_target.CurvyTarget == null)
                 return;
 
-            if (_target.CurvyTarget.GetComponent<CurvySplineBase>() != null)
+            if (_target.CurvyTarget.GetComponent<CurvySpline>() != null)
                 splineEventsGUI();
             
             if (_target.CurvyTarget.GetComponent<CurvyGenerator>() != null)

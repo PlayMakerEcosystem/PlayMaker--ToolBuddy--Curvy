@@ -1,14 +1,16 @@
 ﻿// =====================================================================
-// Copyright 2013-2016 Fluffy Underware
+// Copyright 2013-2018 ToolBuddy
 // All rights reserved
 // 
-// http://www.fluffyunderware.com
+// http://www.toolbuddy.net
 // =====================================================================
 
 pmCurvy - Curvy PlayMaker
 
 ========== HISTORY ==========================
-
+3.0.0
+=======
+Made compatible with Curvy 3.0.0
 2.3.0
 =======
 Made compatible with Curvy 2.3.0

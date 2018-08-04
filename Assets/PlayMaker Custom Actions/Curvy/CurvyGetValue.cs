@@ -1,8 +1,8 @@
 // =====================================================================
-// Copyright 2013-2016 Fluffy Underware
+// Copyright 2013-2018 ToolBuddy
 // All rights reserved
 // 
-// http://www.fluffyunderware.com
+// http://www.toolbuddy.net
 // =====================================================================
 
 using System;
@@ -22,7 +22,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
     {
         [ActionSection("Input")]
         [RequiredField, Tooltip("The Spline or SplineGroup to address")]
-        [CheckForComponent(typeof(CurvySplineBase))]
+        [CheckForComponent(typeof(CurvySpline))]
         public FsmOwnerDefault GameObject;
         [RequiredField, Tooltip("Input value (TF or Distance)")]
         public FsmFloat Input;
@@ -71,7 +71,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
         [Tooltip("Perform in LateUpdate. This is useful if you want to override the position of objects that are animated or otherwise positioned in Update.")]
         public bool lateUpdate;
 
-        CurvySplineBase mSpline;
+        CurvySpline mSpline;
 
         public override void OnPreprocess()
         {
@@ -89,7 +89,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
             GameObject go = Fsm.GetOwnerDefaultTarget(GameObject);
             if (go)
             {
-                mSpline = go.GetComponent<CurvySplineBase>();
+                mSpline = go.GetComponent<CurvySpline>();
                 if (mSpline && !everyFrame && !lateUpdate)
                 {
                     DoInterpolate();
@@ -189,7 +189,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
             if (StoreCount.UseVariable)
             {
 #pragma warning disable 618
-                StoreCount.Value = (mSpline is CurvySplineGroup) ? ((CurvySplineGroup)mSpline).Count : ((CurvySpline)mSpline).Count;
+                StoreCount.Value = mSpline.Count;
 #pragma warning restore 618
             }
         }
@@ -223,14 +223,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
         CurvySplineSegment getSegment(float tf, out float localF)
         {
 #pragma warning disable 618
-            if (mSpline is CurvySplineGroup)
-            {
-                float ltf;
-                CurvySpline spl = ((CurvySplineGroup)mSpline).TFToSpline(tf, out ltf);
-                return spl.TFToSegment(ltf, out localF);
-            }
-            else
-                return ((CurvySpline)mSpline).TFToSegment(tf, out localF);
+            return mSpline.TFToSegment(tf, out localF);
 #pragma warning restore 618
         }
     }

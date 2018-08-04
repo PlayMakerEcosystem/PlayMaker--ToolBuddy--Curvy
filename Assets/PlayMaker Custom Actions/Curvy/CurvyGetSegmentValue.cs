@@ -1,8 +1,8 @@
 // =====================================================================
-// Copyright 2013-2016 Fluffy Underware
+// Copyright 2013-2018 ToolBuddy
 // All rights reserved
 // 
-// http://www.fluffyunderware.com
+// http://www.toolbuddy.net
 // =====================================================================
 using UnityEngine;
 using HutongGames.PlayMaker;
@@ -159,7 +159,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 StoreLength.Value = mSegment.Length;
 
             if (StoreSegmentIndex.UseVariable)
-                StoreSegmentIndex.Value = mSegment.Spline.GetSegementIndex(mSegment);
+                StoreSegmentIndex.Value = mSegment.Spline.GetSegmentIndex(mSegment);
             if (StoreControlPointIndex.UseVariable)
                 StoreControlPointIndex.Value = mSegment.Spline.GetControlPointIndex(mSegment);
         }

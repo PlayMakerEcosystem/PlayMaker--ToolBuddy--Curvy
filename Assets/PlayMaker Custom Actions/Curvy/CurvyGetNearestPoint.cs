@@ -17,7 +17,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
     public class CurvyGetNearestPoint : FsmStateAction
     {
         [RequiredField, Tooltip("The Spline or SplineGroup to address")]
-        [CheckForComponent(typeof(CurvySplineBase))]
+        [CheckForComponent(typeof(CurvySpline))]
         public FsmOwnerDefault GameObject;
 
         [RequiredField, Tooltip("The known point in space")]
@@ -41,7 +41,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
         [Tooltip("Perform in LateUpdate.")]
         public bool lateUpdate;
 
-        CurvySplineBase mSpline;
+        CurvySpline mSpline;
 
 		public override void OnPreprocess()
 		{
