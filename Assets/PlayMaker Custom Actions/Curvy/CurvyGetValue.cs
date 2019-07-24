@@ -75,12 +75,12 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
         public override void OnPreprocess()
         {
-            #if PLAYMAKER_1_8_5_OR_NEWER
+#if PLAYMAKER_1_8_5_OR_NEWER
             if (lateUpdate)
             {
                 Fsm.HandleLateUpdate = true;
             }
-            #endif
+#endif
         }
 
         // Code that runs on entering the state.
@@ -154,9 +154,20 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 if (metaType != null)
                 {
                     if (StoreMetadata.UseVariable)
+#pragma warning disable 618
                         StoreMetadata.Value = mSpline.GetMetadata(metaType, f);
+#pragma warning restore 618
                     if (StoreInterpolatedMetadata.useVariable)
+#pragma warning disable 618
                         StoreInterpolatedMetadata.SetValue(mSpline.InterpolateMetadata(metaType, f));
+                    //Preparing for transition to Curvy 7.0.0
+                    //{
+                    //    Type splineType = mSpline.GetType();
+                    //    MethodInfo methodInfo = splineType.GetMethod("GetInterpolatedMetadata");
+                    //    MethodInfo genericMethodInfo = methodInfo.MakeGenericMethod(metaType, StoreInterpolatedMetadata.RealType);
+                    //    StoreInterpolatedMetadata.SetValue(genericMethodInfo.Invoke(mSpline, new object[] { (object)f }));
+                    //}
+#pragma warning restore 618
                 }
 
 

@@ -8,6 +8,9 @@
 pmCurvy - Curvy PlayMaker
 
 ========== HISTORY ==========================
+6.0.0
+=======
+Made compatible with Curvy 6.0.0
 3.0.0
 =======
 Made compatible with Curvy 3.0.0

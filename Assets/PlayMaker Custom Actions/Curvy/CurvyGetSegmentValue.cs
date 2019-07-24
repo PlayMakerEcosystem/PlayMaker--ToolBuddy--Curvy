@@ -68,15 +68,15 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
         CurvySplineSegment mSegment;
 
-		public override void OnPreprocess()
-		{
-			#if PLAYMAKER_1_8_5_OR_NEWER
-			if (lateUpdate)
-			{
-				Fsm.HandleLateUpdate = true;
-			}
-			#endif
-		}
+        public override void OnPreprocess()
+        {
+#if PLAYMAKER_1_8_5_OR_NEWER
+            if (lateUpdate)
+            {
+                Fsm.HandleLateUpdate = true;
+            }
+#endif
+        }
 
         // Code that runs on entering the state.
         public override void OnEnter()
@@ -148,9 +148,13 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 if (metaType != null)
                 {
                     if (StoreMetadata.UseVariable)
+#pragma warning disable 618
                         StoreMetadata.Value = mSegment.GetMetaData(metaType);
+#pragma warning restore 618
                     if (StoreInterpolatedMetadata.useVariable)
+#pragma warning disable 618
                         StoreInterpolatedMetadata.SetValue(mSegment.InterpolateMetadata(metaType, inputF));
+#pragma warning restore 618
                 }
 
             }
