@@ -40,3 +40,8 @@ Assets/Packages/Curvy
 Assets/Packages/DevTools
 
 Assets/Packages/
+
+Assets/Plugins/Curvy/
+Assets/Plugins/LibTessDotNet/
+Assets/Plugins/DevTools/
+Assets/Plugins/Curvy Examples/
