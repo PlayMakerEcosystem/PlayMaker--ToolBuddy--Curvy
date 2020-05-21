@@ -4,10 +4,15 @@
 // 
 // http://www.toolbuddy.net
 // =====================================================================
+
+using System;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using HutongGames.PlayMaker;
 using TooltipAttribute = HutongGames.PlayMaker.TooltipAttribute;
 using FluffyUnderware.Curvy;
+using Object = UnityEngine.Object;
 
 namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
@@ -131,7 +136,12 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                     StoreRotation.Value = (StoreUpVector.IsNone) ? mSegment.GetOrientationFast(inputF) : Quaternion.LookRotation(mSegment.GetTangent(inputF), StoreUpVector.Value);
 
                 if (StoreScale.UseVariable)
-                    StoreScale.Value = mSegment.InterpolateScale(inputF);
+                {
+                    CurvySplineSegment nextControlPoint = mSegment.Spline.GetNextControlPoint(mSegment);
+                    StoreScale.Value = nextControlPoint
+                        ? Vector3.Lerp(mSegment.transform.lossyScale, nextControlPoint.transform.lossyScale, inputF)
+                        : mSegment.transform.lossyScale;
+                }
 
                 if (StoreTF.UseVariable)
                     StoreTF.Value = mSegment.LocalFToTF(inputF);
@@ -147,16 +157,31 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
                 if (metaType != null)
                 {
-                    if (StoreMetadata.UseVariable)
-#pragma warning disable 618
-                        StoreMetadata.Value = mSegment.GetMetaData(metaType);
-#pragma warning restore 618
-                    if (StoreInterpolatedMetadata.useVariable)
-#pragma warning disable 618
-                        StoreInterpolatedMetadata.SetValue(mSegment.InterpolateMetadata(metaType, inputF));
-#pragma warning restore 618
-                }
+                    if (metaType.IsSubclassOf(typeof(CurvyMetadataBase)) == false)
+                        //this if statement's branch does not exclude classes inheriting from CurvyMetadataBase but not from CurvyInterpolatableMetadataBase, but that's ok, those classes are handled below
+                        Debug.LogError("Meta data type " + metaType.FullName + " should be a subclass of CurvyInterpolatableMetadataBase<T>");
+                    else
+                    {
 
+                        if (StoreMetadata.UseVariable)
+                        {
+                            MethodInfo genericMethodInfo = mSegment.GetType().GetMethod("GetMetadata").MakeGenericMethod(metaType);
+                            StoreMetadata.Value = (Object)genericMethodInfo.Invoke(mSegment, new System.Object[] { false });
+                        }
+                        if (StoreInterpolatedMetadata.useVariable)
+                        {
+                            Type argumentType = CurvyGetValue.GetInterpolatableMetadataGenericType(metaType);
+
+                            if (argumentType == null)
+                                Debug.LogError("Meta data type " + metaType.FullName + " should be a subclass of CurvyInterpolatableMetadataBase<T>");
+                            else
+                            {
+                                MethodInfo genericMethodInfo = mSegment.GetType().GetMethod("GetInterpolatedMetadata").MakeGenericMethod(metaType, argumentType);
+                                StoreInterpolatedMetadata.SetValue(genericMethodInfo.Invoke(mSegment, new System.Object[] { inputF }));
+                            }
+                        }
+                    }
+                }
             }
             // General
             if (StoreLength.UseVariable)

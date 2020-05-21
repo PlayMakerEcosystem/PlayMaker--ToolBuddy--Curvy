@@ -7,11 +7,13 @@
 
 using System;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using HutongGames.PlayMaker;
 using TooltipAttribute = HutongGames.PlayMaker.TooltipAttribute;
 using FluffyUnderware.Curvy;
 using FluffyUnderware.DevTools.Extensions;
+using Object = UnityEngine.Object;
 
 namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
@@ -144,7 +146,17 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                     StoreRotation.Value = (StoreUpVector.IsNone) ? mSpline.GetOrientationFast(f) : Quaternion.LookRotation(mSpline.GetTangent(f), StoreUpVector.Value);
 
                 if (StoreScale.UseVariable)
-                    StoreScale.Value = mSpline.InterpolateScale(f);
+                {
+                    float localF;
+                    CurvySplineSegment segment = mSpline.TFToSegment(f, out localF);
+                    CurvySplineSegment nextControlPoint = segment.Spline.GetNextControlPoint(segment);
+                    if (ReferenceEquals(segment, null) == false)
+                        StoreScale.Value = nextControlPoint
+                            ? Vector3.Lerp(segment.transform.lossyScale, nextControlPoint.transform.lossyScale, localF)
+                            : segment.transform.lossyScale;
+                    else
+                        StoreScale.Value = Vector3.zero;
+                }
 
                 if (StoreTF.UseVariable)
                     StoreTF.Value = f;
@@ -153,21 +165,30 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                     StoreDistance.Value = (UseWorldUnits.Value) ? Input.Value : mSpline.TFToDistance(f);
                 if (metaType != null)
                 {
-                    if (StoreMetadata.UseVariable)
-#pragma warning disable 618
-                        StoreMetadata.Value = mSpline.GetMetadata(metaType, f);
-#pragma warning restore 618
-                    if (StoreInterpolatedMetadata.useVariable)
-#pragma warning disable 618
-                        StoreInterpolatedMetadata.SetValue(mSpline.InterpolateMetadata(metaType, f));
-                    //Preparing for transition to Curvy 7.0.0
-                    //{
-                    //    Type splineType = mSpline.GetType();
-                    //    MethodInfo methodInfo = splineType.GetMethod("GetInterpolatedMetadata");
-                    //    MethodInfo genericMethodInfo = methodInfo.MakeGenericMethod(metaType, StoreInterpolatedMetadata.RealType);
-                    //    StoreInterpolatedMetadata.SetValue(genericMethodInfo.Invoke(mSpline, new object[] { (object)f }));
-                    //}
-#pragma warning restore 618
+                    if (metaType.IsSubclassOf(typeof(CurvyMetadataBase)) == false)
+                        //this if statement's branch does not exclude classes inheriting from CurvyMetadataBase but not from CurvyInterpolatableMetadataBase, but that's ok, those classes are handled below
+                        Debug.LogError("Meta data type " + metaType.FullName + " should be a subclass of CurvyInterpolatableMetadataBase<T>");
+                    else
+                    {
+
+                        if (StoreMetadata.UseVariable)
+                        {
+                            MethodInfo genericMethodInfo = mSpline.GetType().GetMethod("GetMetadata").MakeGenericMethod(metaType);
+                            StoreMetadata.Value = (Object)genericMethodInfo.Invoke(mSpline, new System.Object[] { f });
+                        }
+                        if (StoreInterpolatedMetadata.useVariable)
+                        {
+                            Type argumentType = GetInterpolatableMetadataGenericType(metaType);
+
+                            if (argumentType == null)
+                                Debug.LogError("Meta data type " + metaType.FullName + " should be a subclass of CurvyInterpolatableMetadataBase<T>");
+                            else
+                            {
+                                MethodInfo genericMethodInfo = mSpline.GetType().GetMethod("GetInterpolatedMetadata").MakeGenericMethod(metaType, argumentType);
+                                StoreInterpolatedMetadata.SetValue(genericMethodInfo.Invoke(mSpline, new System.Object[] { f }));
+                            }
+                        }
+                    }
                 }
 
 
@@ -199,10 +220,28 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
             if (StoreCount.UseVariable)
             {
-#pragma warning disable 618
+
                 StoreCount.Value = mSpline.Count;
-#pragma warning restore 618
             }
+        }
+
+        internal static Type GetInterpolatableMetadataGenericType(Type metaType)
+        {
+            Type currentType = metaType;
+            Type argumentType = null;
+            while (currentType != typeof(CurvyMetadataBase))
+            {
+                if (currentType.IsGenericType &&
+                    currentType.GetGenericTypeDefinition() == typeof(CurvyInterpolatableMetadataBase<>))
+                {
+                    argumentType = currentType.GetGenericArguments().Single();
+                    break;
+                }
+
+                currentType = currentType.BaseType;
+            }
+
+            return argumentType;
         }
 
         public override void Reset()
@@ -233,9 +272,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
         CurvySplineSegment getSegment(float tf, out float localF)
         {
-#pragma warning disable 618
             return mSpline.TFToSegment(tf, out localF);
-#pragma warning restore 618
         }
     }
 }
