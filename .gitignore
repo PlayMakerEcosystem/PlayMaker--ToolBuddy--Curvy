@@ -41,7 +41,14 @@ Assets/Packages/DevTools
 
 Assets/Packages/
 
-Assets/Plugins/Curvy/
-Assets/Plugins/LibTessDotNet/
-Assets/Plugins/DevTools/
-Assets/Plugins/Curvy Examples/
+/Assets/Plugins/Curvy/
+/Assets/Plugins/LibTessDotNet/
+/Assets/Plugins/DevTools/
+/Assets/Plugins/Curvy Examples/
+/Assets/Plugins/Curvy Resources/
+
+/Assets/Plugins/Curvy.meta
+/Assets/Plugins/LibTessDotNet.meta
+/Assets/Plugins/DevTools.meta
+/Assets/Plugins/Curvy Examples.meta
+/Assets/Plugins/Curvy Resources.meta
