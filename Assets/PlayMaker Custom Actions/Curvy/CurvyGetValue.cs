@@ -120,13 +120,21 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
         {
             if (!mSpline.IsInitialized) return;
 
+            System.Type metaDataType;
+            {
+                if (String.IsNullOrEmpty(MetaDataType.Value))
+                    metaDataType = null;
+                else
+                {
 #if NETFX_CORE
-            Type[] knownTypes = this.GetType().GetAllTypes();
+                    Type[] knownTypes = this.GetType().GetAllTypes();
 #else
-            Type[] knownTypes = TypeExt.GetLoadedTypes();
+                    Type[] knownTypes = TypeExt.GetLoadedTypes();
 
 #endif
-            System.Type metaType = knownTypes.FirstOrDefault(t => t.FullName == MetaDataType.Value);
+                    metaDataType = knownTypes.FirstOrDefault(t => t.FullName == MetaDataType.Value);
+                }
+            }
 
             bool calc = !Input.IsNone;
             if (calc)
@@ -163,28 +171,28 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
                 if (StoreDistance.UseVariable)
                     StoreDistance.Value = (UseWorldUnits.Value) ? Input.Value : mSpline.TFToDistance(f);
-                if (metaType != null)
+                if (metaDataType != null)
                 {
-                    if (metaType.IsSubclassOf(typeof(CurvyMetadataBase)) == false)
+                    if (metaDataType.IsSubclassOf(typeof(CurvyMetadataBase)) == false)
                         //this if statement's branch does not exclude classes inheriting from CurvyMetadataBase but not from CurvyInterpolatableMetadataBase, but that's ok, those classes are handled below
-                        Debug.LogError("Meta data type " + metaType.FullName + " should be a subclass of CurvyInterpolatableMetadataBase<T>");
+                        Debug.LogError("Meta data type " + metaDataType.FullName + " should be a subclass of CurvyInterpolatableMetadataBase<T>");
                     else
                     {
 
                         if (StoreMetadata.UseVariable)
                         {
-                            MethodInfo genericMethodInfo = mSpline.GetType().GetMethod("GetMetadata").MakeGenericMethod(metaType);
+                            MethodInfo genericMethodInfo = mSpline.GetType().GetMethod("GetMetadata").MakeGenericMethod(metaDataType);
                             StoreMetadata.Value = (Object)genericMethodInfo.Invoke(mSpline, new System.Object[] { f });
                         }
                         if (StoreInterpolatedMetadata.useVariable)
                         {
-                            Type argumentType = GetInterpolatableMetadataGenericType(metaType);
+                            Type argumentType = GetInterpolatableMetadataGenericType(metaDataType);
 
                             if (argumentType == null)
-                                Debug.LogError("Meta data type " + metaType.FullName + " should be a subclass of CurvyInterpolatableMetadataBase<T>");
+                                Debug.LogError("Meta data type " + metaDataType.FullName + " should be a subclass of CurvyInterpolatableMetadataBase<T>");
                             else
                             {
-                                MethodInfo genericMethodInfo = mSpline.GetType().GetMethod("GetInterpolatedMetadata").MakeGenericMethod(metaType, argumentType);
+                                MethodInfo genericMethodInfo = mSpline.GetType().GetMethod("GetInterpolatedMetadata").MakeGenericMethod(metaDataType, argumentType);
                                 StoreInterpolatedMetadata.SetValue(genericMethodInfo.Invoke(mSpline, new System.Object[] { f }));
                             }
                         }
