@@ -8,15 +8,22 @@
 pmCurvy - Curvy PlayMaker
 
 ========== HISTORY ==========================
+7.0.1
+=======
+Optimized Curvy Get Value when it does not need to get meta data types
+
 7.0.0
 =======
 Made compatible with Curvy 7.0.0
+
 6.0.0
 =======
 Made compatible with Curvy 6.0.0
+
 3.0.0
 =======
 Made compatible with Curvy 3.0.0
+
 2.3.0
 =======
 Made compatible with Curvy 2.3.0
