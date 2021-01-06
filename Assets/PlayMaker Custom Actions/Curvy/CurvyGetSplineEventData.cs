@@ -30,6 +30,9 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 case "CURVY / ON CP REACHED":
                     getData(PlayMakerCurvyComponentProxy._OnCPReachedEventData);
                     break;
+                case "CURVY / ON END REACHED":
+                    getData(PlayMakerCurvyComponentProxy._OnEndReachedEventData);
+                    break;
             }
 
             Finish();

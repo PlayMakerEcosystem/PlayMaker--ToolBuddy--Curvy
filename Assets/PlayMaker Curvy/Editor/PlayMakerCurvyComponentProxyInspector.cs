@@ -78,6 +78,7 @@ namespace FluffyUnderware.CurvyEditor.PlayMaker
         void controllerEventsGUI()
         {
             EventTargetGUI(ref _target.SplineControllerOnCPReached, "On CP Reached");
+            EventTargetGUI(ref _target.SplineControllerOnEndReached, "On End Reached");
         }
 
         void EventTargetGUI(ref PlayMakerCurvyComponentProxy.FsmEventSetup fsmEventSetup, string title)

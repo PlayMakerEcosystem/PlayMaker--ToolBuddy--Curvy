@@ -30,11 +30,11 @@ namespace FluffyUnderware.Curvy.PlayMaker
 
             public FsmEventSetup(string eventName)
             {
-                target=PlayMakerProxyEventTarget.Owner;
-                gameObject=null;
-                fsmComponent=null;
-                customEventName=null;
-                builtInEventName=eventName;
+                target = PlayMakerProxyEventTarget.Owner;
+                gameObject = null;
+                fsmComponent = null;
+                customEventName = null;
+                builtInEventName = eventName;
                 debug = fsmComponent;
             }
 
@@ -75,16 +75,19 @@ namespace FluffyUnderware.Curvy.PlayMaker
         public GameObject CurvyTarget;
 
         // Spline Events
-        public FsmEventSetup SplineOnRefresh=new FsmEventSetup("CURVY / ON SPLINE REFRESH");
-        FsmEventTarget splineOnRefreshEventTarget;	
+        public FsmEventSetup SplineOnRefresh = new FsmEventSetup("CURVY / ON SPLINE REFRESH");
+        FsmEventTarget splineOnRefreshEventTarget;
         // CG Events
         public FsmEventSetup CGOnRefresh = new FsmEventSetup("CURVY / ON GENERATOR REFRESH");
         FsmEventTarget cgOnRefreshEventTarget;
         // Spline Controller Events
         public FsmEventSetup SplineControllerOnCPReached = new FsmEventSetup("CURVY / ON CP REACHED");
         FsmEventTarget splineControllerOnCPreachedTarget;
+        public FsmEventSetup SplineControllerOnEndReached = new FsmEventSetup("CURVY / ON END REACHED");
+        FsmEventTarget splineControllerOnEndReachedTarget;
 
         public static CurvySplineMoveEventArgs _OnCPReachedEventData;
+        public static CurvySplineMoveEventArgs _OnEndReachedEventData;
 
 
         #region ### Unity Callbacks ###
@@ -183,7 +186,7 @@ namespace FluffyUnderware.Curvy.PlayMaker
                 HutongGames.PlayMaker.Fsm.EventData = eventData;
             }
             fsmEventTarget.excludeSelf = false;
-            
+
             if (PlayMakerCurvySceneProxy.fsm == null)
             {
                 Debug.LogError("Missing 'PlayMaker Curvy' prefab in scene");
@@ -228,11 +231,11 @@ namespace FluffyUnderware.Curvy.PlayMaker
 
         void onCGRefresh(CurvyCGEventArgs e)
         {
-            FsmEventData _eventData=new FsmEventData();
-            this.FirePlayMakerEvent(CGOnRefresh,cgOnRefreshEventTarget,_eventData);
+            FsmEventData _eventData = new FsmEventData();
+            this.FirePlayMakerEvent(CGOnRefresh, cgOnRefreshEventTarget, _eventData);
         }
 
-        
+
 
         #endregion
 
@@ -245,14 +248,27 @@ namespace FluffyUnderware.Curvy.PlayMaker
                 c.OnControlPointReached.AddListener(onControllerCPReached);
                 setupEventTarget(SplineControllerOnCPReached, ref splineControllerOnCPreachedTarget);
             }
+            if (SplineControllerOnEndReached.IsSetup)
+            {
+                c.OnEndReached.AddListener(onControllerEndReached);
+                setupEventTarget(SplineControllerOnEndReached, ref splineControllerOnEndReachedTarget);
+            }
         }
 
         void onControllerCPReached(CurvySplineMoveEventArgs e)
         {
-            FsmEventData _eventData = new FsmEventData();
+            FsmEventData eventData = new FsmEventData();
             _OnCPReachedEventData = e;
-            this.FirePlayMakerEvent(SplineControllerOnCPReached, splineControllerOnCPreachedTarget, _eventData);
+            this.FirePlayMakerEvent(SplineControllerOnCPReached, splineControllerOnCPreachedTarget, eventData);
             e = _OnCPReachedEventData;
+        }
+
+        void onControllerEndReached(CurvySplineMoveEventArgs e)
+        {
+            FsmEventData eventData = new FsmEventData();
+            _OnEndReachedEventData = e;
+            this.FirePlayMakerEvent(SplineControllerOnEndReached, splineControllerOnEndReachedTarget, eventData);
+            e = _OnEndReachedEventData;
         }
 
         #endregion
