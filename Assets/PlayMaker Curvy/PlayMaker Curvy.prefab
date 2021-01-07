@@ -103,6 +103,9 @@ MonoBehaviour:
     - name: CURVY / ON CP REACHED
       isSystemEvent: 0
       isGlobal: 1
+    - name: CURVY / ON END REACHED
+      isSystemEvent: 0
+      isGlobal: 1
     - name: CURVY / ON GENERATOR REFRESH
       isSystemEvent: 0
       isGlobal: 1
