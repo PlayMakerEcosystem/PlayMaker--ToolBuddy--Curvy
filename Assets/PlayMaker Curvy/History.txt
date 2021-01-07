@@ -11,6 +11,7 @@ pmCurvy - Curvy PlayMaker
 7.0.1
 =======
 Optimized Curvy Get Value when it does not need to get meta data types
+Added a new event: CURVY / ON END REACHED, triggered when a controller reaches the end of a spline
 
 7.0.0
 =======
