@@ -110,7 +110,9 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 else
                 {
                     go.transform.position = mSpline.transform.TransformPoint(p);
-                    go.transform.localRotation = mSpline.transform.rotation*mSpline.GetOrientationFast(tf);
+                    
+                    if (SetOrientation)
+                        go.transform.rotation = mSpline.transform.rotation*mSpline.GetOrientationFast(tf);
                 }
             }
         }
