@@ -87,9 +87,9 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
         void DoFindPoint()
         {
-            if (!mSpline.IsInitialized || !SourcePoint.UseVariable) return;
+            if (!mSpline.IsInitialized || SourcePoint.IsNone) return;
 
-            if (!StoreTF.UseVariable && !StorePosition.UseVariable && !StoreUpVector.UseVariable && !StoreRotation.UseVariable) return;
+            if (StoreTF.IsNone && StorePosition.IsNone && StoreUpVector.IsNone && StoreRotation.IsNone && StoreTangent.IsNone) return;
 
             Vector3 pos = (Space == Space.Self) ? SourcePoint.Value : mSpline.transform.InverseTransformPoint(SourcePoint.Value);
 
