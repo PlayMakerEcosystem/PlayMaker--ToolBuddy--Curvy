@@ -141,19 +141,19 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
             {
                 float f = (UseWorldUnits.Value) ? mSpline.DistanceToTF(Input.Value) : Input.Value;
 
-                if (StorePosition.UseVariable)
+                if (StorePosition.IsNone == false)
                     StorePosition.Value = (UseCache.Value) ? mSpline.InterpolateFast(f) : mSpline.Interpolate(f);
 
-                if (StoreTangent.UseVariable)
+                if (StoreTangent.IsNone == false)
                     StoreTangent.Value = mSpline.GetTangent(f);
 
-                if (StoreUpVector.UseVariable)
+                if (StoreUpVector.IsNone == false)
                     StoreUpVector.Value = mSpline.GetOrientationUpFast(f);
 
-                if (StoreRotation.UseVariable)
+                if (StoreRotation.IsNone == false)
                     StoreRotation.Value = (StoreUpVector.IsNone) ? mSpline.GetOrientationFast(f) : Quaternion.LookRotation(mSpline.GetTangent(f), StoreUpVector.Value);
 
-                if (StoreScale.UseVariable)
+                if (StoreScale.IsNone == false)
                 {
                     float localF;
                     CurvySplineSegment segment = mSpline.TFToSegment(f, out localF);
@@ -166,10 +166,10 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                         StoreScale.Value = Vector3.zero;
                 }
 
-                if (StoreTF.UseVariable)
+                if (StoreTF.IsNone == false)
                     StoreTF.Value = f;
 
-                if (StoreDistance.UseVariable)
+                if (StoreDistance.IsNone == false)
                     StoreDistance.Value = (UseWorldUnits.Value) ? Input.Value : mSpline.TFToDistance(f);
                 if (metaDataType != null)
                 {
@@ -179,12 +179,12 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                     else
                     {
 
-                        if (StoreMetadata.UseVariable)
+                        if (StoreMetadata.IsNone == false)
                         {
                             MethodInfo genericMethodInfo = mSpline.GetType().GetMethod("GetMetadata").MakeGenericMethod(metaDataType);
                             StoreMetadata.Value = (Object)genericMethodInfo.Invoke(mSpline, new System.Object[] { f });
                         }
-                        if (StoreInterpolatedMetadata.useVariable)
+                        if (StoreInterpolatedMetadata.IsNone == false)
                         {
                             Type argumentType = GetInterpolatableMetadataGenericType(metaDataType);
 
@@ -202,20 +202,20 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
                 CurvySplineSegment seg = null;
                 float segF = 0;
-                if (StoreSegment.UseVariable)
+                if (StoreSegment.IsNone == false)
                 {
                     seg = getSegment(f, out segF);
                     StoreSegment.Value = seg.gameObject;
                 }
 
-                if (StoreSegmentF.UseVariable)
+                if (StoreSegmentF.IsNone == false)
                 {
                     if (!seg)
                         seg = getSegment(f, out segF);
                     StoreSegmentF.Value = segF;
                 }
 
-                if (StoreSegmentDistance.UseVariable)
+                if (StoreSegmentDistance.IsNone == false)
                 {
                     if (!seg)
                         seg = getSegment(f, out segF);
@@ -223,10 +223,10 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
                 }
             }
             // General
-            if (StoreLength.UseVariable)
+            if (StoreLength.IsNone == false)
                 StoreLength.Value = mSpline.Length;
 
-            if (StoreCount.UseVariable)
+            if (StoreCount.IsNone == false)
             {
 
                 StoreCount.Value = mSpline.Count;

@@ -95,22 +95,22 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 
             float _tf = mSpline.GetNearestPointTF(pos);
 
-            if (StoreTF.UseVariable)
+            if (StoreTF.IsNone == false)
                 StoreTF.Value = _tf;
 
-            if (StorePosition.UseVariable)
+            if (StorePosition.IsNone == false)
             {
                 StorePosition.Value = (Space == Space.Self) ? mSpline.Interpolate(_tf) : mSpline.transform.TransformPoint(mSpline.Interpolate(_tf));
             }
 
-            if (StoreTangent.UseVariable)
+            if (StoreTangent.IsNone == false)
                 StoreTangent.Value = (Space==Space.Self) ? mSpline.GetTangent(_tf) : mSpline.transform.TransformDirection(mSpline.GetTangent(_tf));
 
-            if (StoreUpVector.UseVariable)
+            if (StoreUpVector.IsNone == false)
             {
                 StoreUpVector.Value = (Space==Space.Self) ? mSpline.GetOrientationUpFast(_tf) : mSpline.transform.TransformDirection(mSpline.GetOrientationUpFast(_tf));
             }
-            if (StoreRotation.UseVariable)
+            if (StoreRotation.IsNone == false)
             {
                 if (Space == Space.Self)
                     StoreRotation.Value = (StoreUpVector.IsNone) ? mSpline.GetOrientationFast(_tf) : Quaternion.LookRotation(mSpline.GetTangent(_tf), StoreUpVector.Value);
