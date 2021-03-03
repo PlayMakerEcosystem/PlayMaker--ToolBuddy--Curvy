@@ -8,6 +8,10 @@
 pmCurvy - Curvy PlayMaker
 
 ========== HISTORY ==========================
+7.0.4
+=======
+Optimizations 
+
 7.0.3
 =======
 [FIXED] Curvy Get Nearest Point action not running when Source Point is not a variable
