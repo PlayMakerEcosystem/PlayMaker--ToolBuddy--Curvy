@@ -57,3 +57,12 @@ Assets/Packages/
 iTween.meta
 /Assets/Plugins/Pixelplacement.meta
 /Assets/Plugins/Pixelplacement
+
+/.vsconfig
+/Assets/Resources.meta
+/Assets/Resources/BillingMode.json
+/Assets/Resources/BillingMode.json.meta
+/ProjectSettings/PackageManagerSettings.asset
+/ProjectSettings/PresetManager.asset
+/ProjectSettings/VFXManager.asset
+/ProjectSettings/XRSettings.asset
