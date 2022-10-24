@@ -20,7 +20,7 @@ sysinfo.txt
 Temp/
 
 /Assets/PlayMaker/
-/Assets/iTween/
+
 /Assets/Gizmos/
 
 /Assets/Chili4U/
@@ -32,8 +32,6 @@ net.fabrejean.meta
 test.unitypackage
 Assets/Plugins/PlayMaker
 PlayMaker.meta
-iTween.meta
-
 
 Assets/Packages/Curvy Examples
 Assets/Packages/Curvy
@@ -52,3 +50,20 @@ Assets/Packages/
 /Assets/Plugins/DevTools.meta
 /Assets/Plugins/Curvy Examples.meta
 /Assets/Plugins/Curvy Resources.meta
+/Assets/Plugins/ToolBuddy.meta
+/Assets/Plugins/ToolBuddy
+
+/Assets/iTween/
+iTween.meta
+/Assets/Plugins/Pixelplacement.meta
+/Assets/Plugins/Pixelplacement
+
+/.vsconfig
+/Assets/Resources.meta
+/Assets/Resources/BillingMode.json
+/Assets/Resources/BillingMode.json.meta
+/ProjectSettings/PackageManagerSettings.asset
+/ProjectSettings/PresetManager.asset
+/ProjectSettings/VFXManager.asset
+/ProjectSettings/XRSettings.asset
+/.vs
