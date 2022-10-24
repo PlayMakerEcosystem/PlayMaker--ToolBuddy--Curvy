@@ -841,7 +841,7 @@ MonoBehaviour:
           tooltip: 
           showInInspector: 0
           networkSync: 0
-          value: FluffyUnderware.Curvy.Examples.HeightMetadata
+          value: FluffyUnderware.Curvy.Examples.E01_HeightMetadata
         fsmObjectParams:
         - useVariable: 1
           name: 
