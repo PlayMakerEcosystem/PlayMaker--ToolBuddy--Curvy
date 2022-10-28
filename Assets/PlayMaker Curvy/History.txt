@@ -8,6 +8,11 @@
 pmCurvy - Curvy PlayMaker
 
 ========== HISTORY ==========================
+8.0.0
+=======
+Made compatible with Curvy 8.0.0
+[FIXED] Example scene PM04_PaintSpline not drawing where the mouse cursor is
+
 7.0.4
 =======
 Optimizations 
