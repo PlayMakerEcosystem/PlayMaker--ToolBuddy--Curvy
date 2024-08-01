@@ -8,6 +8,11 @@
 pmCurvy - Curvy PlayMaker
 
 ========== HISTORY ==========================
+8.0.1
+=======
+[FIXED] FSMs in the Curvy Examples and prefab have a broken link to the PlayMaker dll.
+[FIXED] Compiler warnings about using an obsolete Curvy Splines field.
+
 8.0.0
 =======
 Made compatible with Curvy 8.0.0
