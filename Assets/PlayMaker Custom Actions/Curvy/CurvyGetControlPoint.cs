@@ -13,7 +13,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Gets a Control Point or Segment GameObject")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvygetcontrolpoint")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvygetcontrolpoint")]
     public class CurvyGetControlPoint : FsmStateAction
     {
         [RequiredField, Tooltip("The Spline to address")]

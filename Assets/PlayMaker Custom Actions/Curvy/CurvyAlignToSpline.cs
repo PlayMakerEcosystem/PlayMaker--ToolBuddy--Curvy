@@ -14,7 +14,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Align a GameObject to a Curvy Spline ")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvyaligntospline")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvyaligntospline")]
     public class CurvyAlignToSpline : FsmStateAction
     {
         [RequiredField, Tooltip("The GameObject to align")]

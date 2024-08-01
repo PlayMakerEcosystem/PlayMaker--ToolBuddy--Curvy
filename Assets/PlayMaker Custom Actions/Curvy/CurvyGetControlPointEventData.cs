@@ -14,7 +14,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Get Spline Event data")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvygetcontrolpointeventdata")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvygetcontrolpointeventdata")]
     public class CurvyGetControlPointEventData : CurvyGetSplineEventData
     {
         [UIHint(UIHint.Variable), Tooltip("Store the Control Point")]
