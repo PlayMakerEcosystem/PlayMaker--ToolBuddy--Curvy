@@ -12,6 +12,7 @@ pmCurvy - Curvy PlayMaker
 =======
 [FIXED] FSMs in the Curvy Examples and prefab have a broken link to the PlayMaker dll.
 [FIXED] Compiler warnings about using an obsolete Curvy Splines field.
+[FIXED] Painted spline in scene PM04 has its first CP misplaced.
 
 8.0.0
 =======
