@@ -14,7 +14,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Send a command to a CurvyController. This is a convenience shortcut for the CallMethod action!")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvycallcontrollermethod")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvycallcontrollermethod")]
     public class CurvyCallControllerMethod : FsmStateAction
     {
         public enum Methods

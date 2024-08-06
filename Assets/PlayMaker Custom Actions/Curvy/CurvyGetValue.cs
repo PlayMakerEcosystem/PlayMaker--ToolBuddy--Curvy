@@ -19,7 +19,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Retrieve or convert several spline values")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvygetvalue")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvygetvalue")]
     public class CurvyGetValue : FsmStateAction
     {
         [ActionSection("Input")]

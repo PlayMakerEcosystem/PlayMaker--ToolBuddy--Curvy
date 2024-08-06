@@ -13,7 +13,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Creates a Curvy spline")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvycreatespline")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvycreatespline")]
     public class CurvyCreateSpline : FsmStateAction
     {
         public CurvyInterpolation Interpolation;

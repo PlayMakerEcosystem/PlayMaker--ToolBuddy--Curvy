@@ -18,7 +18,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Retrieve or convert several segment values")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvygetsegmentvalue")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvygetsegmentvalue")]
     public class CurvyGetSegmentValue : FsmStateAction
     {
         [RequiredField, Tooltip("The Spline Segment to address")]

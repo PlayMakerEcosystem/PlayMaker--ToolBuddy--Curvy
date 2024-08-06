@@ -13,7 +13,7 @@ using FluffyUnderware.Curvy.Controllers;
 namespace FluffyUnderware.Curvy.PlayMaker
 {
     [AddComponentMenu("Curvy/PlayMaker/Component Proxy")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmplaymakercurvycomponentproxy")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmplaymakercurvycomponentproxy")]
     public class PlayMakerCurvyComponentProxy : MonoBehaviour
     {
         public enum PlayMakerProxyEventTarget { Owner, GameObject, BroadCastAll, FsmComponent };

@@ -13,7 +13,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Get data from a spline point nearest to a given point")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvygetnearestpoint")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvygetnearestpoint")]
     public class CurvyGetNearestPoint : FsmStateAction
     {
         [RequiredField, Tooltip("The Spline or SplineGroup to address")]

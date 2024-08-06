@@ -16,7 +16,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Set the various move properties value of curvy Spline Controller ")]
-   // [HelpUrl(CurvySpline.DOCLINK + "pmcurvyaligntospline")]
+   // [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvyaligntospline")]
 	public class CurvySplineControllerSetMoveProperties : FsmStateAction
     {
 		[RequiredField, Tooltip("The GameObject with curvy Spline Controller")]

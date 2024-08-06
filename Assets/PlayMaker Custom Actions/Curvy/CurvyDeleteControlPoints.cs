@@ -13,7 +13,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Delete spline Control Points")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvydeletecontrolpoints")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvydeletecontrolpoints")]
     public class CurvyDeleteControlPoints : FsmStateAction
     {
         [RequiredField, Tooltip("The Spline to address")]

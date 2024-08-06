@@ -14,7 +14,7 @@ namespace FluffyUnderware.Curvy.PlayMaker.Actions
 {
     [ActionCategory("Curvy")]
     [Tooltip("Fire an event when the Curvy Spline is fully loaded")]
-    [HelpUrl(CurvySpline.DOCLINK + "pmcurvyinitialize")]
+    [HelpUrl(AssetInformation.DocsRedirectionBaseUrl + "pmcurvyinitialize")]
     public class CurvyInitialize : FsmStateAction
     {
 
